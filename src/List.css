@@ -1,0 +1,58 @@
+.listContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .addForm {
+    display: flex;
+  }
+  
+  .addInput {
+    flex: 1;
+    padding: 8px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .addButton {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
+  .addButton:hover {
+    background-color: #45a049;
+  }
+  
+  .todoList {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .todoItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    background-color: #f2f2f2;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .deleteButton {
+    padding: 4px 8px;
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ff3f3f;
+  }

@@ -1,18 +1,16 @@
 import React, { useEffect, useState, startTransition } from 'react';
  import { API } from './apiService';
 import value from './addUser';
-import UserData from './addUser';
-
- const User = ({ printValue }) => {
+import "./User.css";
+ const User = ({values}) => {
    const [users, setUsers] = useState([]);
    const [usersLoading, setUsersLoading] = useState(false);
-   console.log(value);
+   //console.log(value);
 
    const fetchUsers = async () => {
      try {
-       setUsersLoading(true);
-
-       const response = await API.getUsers();
+      setUsersLoading(true);
+      const response = await API.getUsers();
       console.log(response);
 
        startTransition(() => {
@@ -31,18 +29,24 @@ import UserData from './addUser';
 
   return (
     <>
+    <div >
       {usersLoading ? (
         <center>Loading...</center>
       ) : (
         <>
-          <ul>
+          <ol>
             {users?.map((user) => (
-              <li key={user.id}>{user.name}</li>
+              <li key={user.id}><div className='printItem'> {user.name} </div></li>
             ))}
-          </ul>
-          
+        
+        {values.map((value, index) => (
+          <li key={index}> <div className='printItem'>{value} </div> </li>
+        ))}
+
+         </ol>
         </>
       )} 
+      </div>
     </>
   );
 };

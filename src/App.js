@@ -1,16 +1,21 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import List from './List';
 import User from './User';
-// import List from './List';
 import './style.css';
 
 const AddUser = lazy(()=>import("./addUser"))
 const Todolist = lazy(()=> import("./List"))
 
 function App() {
+
+  const [values, setValues] = useState([]);
+
+  const handleSubmit = (value) => {
+    setValues([...values, value]);
+  };
   return (
   <Router>
      <Switch>
@@ -31,21 +36,17 @@ function App() {
 
      <Route path='/user'>
 
-      <User/>
+      <User values={values}/>
     
        </Route>
 
        <Route path='/addUser'>
        <Suspense fallback={<h2>Loading......</h2>}>
 
-        <AddUser/>
+        <AddUser onAddValue={handleSubmit}/>
         </Suspense>
 
        </Route>
-
-   
-
-
      </Route>
      </Switch>
    </Router>

@@ -1,29 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "./todoSlice";
+import { addTodo, deleteTodo } from "./todoSlice";
+import "./List.css";
 
 const List = () => {
   const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
-console.log()
+  const [inputValue, setInputValue] = useState("");
+
   const handleAddTodo = (e) => {
-    const task = e.target.previousSibling.value.trim();
-    dispatch(addTodo(task));
-    e.target.previousSibling.value = "";
+    e.preventDefault();
+    const task = inputValue.trim();
+    if (task) {
+      dispatch(addTodo(task));
+      setInputValue("");
+    }
+  };
+
+  const handleDeleteTodo = (index) => {
+    dispatch(deleteTodo(index));
   };
 
   return (
-    <div>
-      <input type="text" placeholder="Enter task" />
-      <button onClick={handleAddTodo}>Add</button>
+    <div className="listContainer">
+      <div className="addForm">
+        <input type="text" className="addInput" placeholder="Enter task" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+        <button type="button" className="addButton" onClick={handleAddTodo}>
+          Add
+        </button>
+      </div>
 
-      <ul>
+      <ul className="todoList">
         {todos.map((todo, index) => (
-          <li key={index}>{todo}</li>
+          <li key={index} className="todoItem">
+            <span>{todo}</span>
+            <button className="deleteButton" onClick={() => handleDeleteTodo(index)}>
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
-
-      
     </div>
   );
 };

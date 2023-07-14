@@ -1,0 +1,16 @@
+.listContainer {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+
+.addInput {
+    padding: 8px;
+    border: 1px solid gray;
+  }
+  
+  .addButton {
+    background-color: #4caf50;
+    border: 1px solid gray;
+    color: white;
+  }
